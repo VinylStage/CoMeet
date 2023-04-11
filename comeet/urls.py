@@ -16,9 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from . import commit
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('user/', include('user.urls')),
     path('commit/', include('commit.urls')),
+    path('',include('user.urls')),
+    path('',include('commit.urls')),
 ]

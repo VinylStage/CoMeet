@@ -1,10 +1,10 @@
 from django.urls import path
-from . import views
+from user import views
+
 urlpatterns = [
-    path('log_in/', views.log_in_view, name='log_in'),
-    path('log_out/', views.log_out_view, name='log_out'),
-    path('sign_up/', views.sign_up_view, name='sign_up'),
-    path('my_page/', views.my_page_view, name='my_page'),
+    path('sign-in/', views.sign_in_view, name='sign-in'),  #태연
+    path('logout/', views.logout, name='logout'),   #태연
+    path('sign_up/', views.sign_up_view, name='sign_up'),  #태연
 ]
 """
 디테일 페이지
