@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect # login_required : 로그인이 되어있어야만 실행되게 하는 함수
-from .models import UserModel        #태연
+from .models import User        #태연 # 모델이름수정
 from django.http import HttpResponse  #태연
 from django.contrib.auth import get_user_model  #태연
 from django.contrib import auth     #태연
@@ -27,7 +27,7 @@ def sign_up_view(request):      # 회원가입 부분 / 태연
             if exist_user :
                 return render(request, 'user/signup.html')
             else:
-                UserModel.objects.create_user(username=username, password=password)    
+                User.objects.create_user(username=username, password=password)    # 모델이름수정
                 return redirect('/log_in')
 
 
