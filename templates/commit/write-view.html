@@ -1,0 +1,29 @@
+{% extends 'navigator.html' %}
+
+{% block content %}
+  <div class="row mb-2">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="media">
+            <div class="media-body">
+              <h5 class="mt-0">게시글 작성</h5>
+              <p>
+                <form action="/write-view/" method="post">
+                  {% csrf_token %}
+                  <div class="form-group mb-1">
+                    <input class="form-control" name='my-header' id="my-header" placeholder="제목을 입력해주세요">
+                  </div>
+                  <div class="form-group mb-2">
+                    <textarea class="form-control form-control-lg" style="height: 500px" name='my-content' id="my-content" placeholder="내용을 입력해주세요"></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-primary" style="float:right;">작성하기</button>
+                </form>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

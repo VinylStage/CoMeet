@@ -1,0 +1,48 @@
+{% extends 'navigator.html' %}
+
+{% block content %}
+  <div class="container timeline-container">
+    <div class="row">
+      <!-- 왼쪽 컬럼 -->
+      <div class="col-md-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ user.username }}</h5>
+            <p class="card-text">{{ user.bio }}</p>
+
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        {% for co in commit %}
+          <div class="col-md-12 mb-2">
+            <div class="card">
+              <div class="card-body">
+                {% if co.author == user %}
+                  <div style="text-align: right">
+                    <a href="/tweet/delete/{{ tw.id }}">
+                      <span class="badge rounded-pill bg-danger">삭제</span>
+                    </a>
+                  </div>
+                {% endif %}
+                <div style="text-align: right">
+                  <a href="#">
+                    <span class="badge rounded-pill bg-success">보기</span>
+                  </a>
+                </div>
+                <div class="media">
+                  <div class="media-body">
+                    <h5 class="mt-0">{{ co.content }}</h5>
+                  </div>
+                  <div style="text-align: right">
+                    <span style="font-size: small">{{ co.author.username }}-{{ co.created_at|timesince }}
+                      전</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% endblock %}
