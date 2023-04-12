@@ -1,0 +1,66 @@
+<!-- templates/tweet/home.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container timeline-container">
+    <div class="row">
+        <!-- 오른 쪽 컬럼-->
+        <div class="col-md-7">
+            <!-- 글을 작성 하는 곳 -->
+            {% if user.is_authenticated %}  <!-- 로그인이 되어 있는지 확인하는 구문 -->
+            <div class="row mb-2">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="media">
+                                <div class="media-body">
+                                    <h5 class="mt-0">나의 이야기를 적어주세요</h5>
+                                    <p>
+                                    <form action="/detail/" method="post">
+                                        {% csrf_token %}
+                                        <div class="form-group mb-2">
+                                            <textarea class="form-control" style="resize: none" name='my-content'
+                                                id="my-content"></textarea>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary" style="float:right;">작성하기</button>
+                                    </form>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            <hr>
+            <!-- 작성 된 글이 나오는 곳 -->
+            <div class="row">
+                <!-- 여기서 commit_는 views.py의 detail함수 안에 있는 {'commit_':all_commit}을 가리키는 것-->
+                {% for tw in commit_ %} 
+                    <div class="col-md-12 mb-2">
+                        <div class="card">
+                            <div class="card-body">
+                                <div style="text-align: right">
+                                    <a href="/detail/{{tw.id}}">
+                                        <span class="badge rounded-pill bg-success">보기</span>
+                                    </a>
+                                </div>
+                                <div class="media">
+                                    <div class="media-body">
+                                        <h5 class="mt-0">{{ tw.content }}</h5>
+                                    </div>
+                                    <div style="text-align: right">
+                                        <span style="font-size: small">{{ tw.writer.username }} - {{tw.created_at|timesince}} 전</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+{% endblock %}
