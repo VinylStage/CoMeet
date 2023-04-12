@@ -18,7 +18,7 @@ def sign_up_view(request):      # 회원가입 부분 / 태연
         username = request.POST.get('username', None)
         password = request.POST.get('password', None)
         password2 = request.POST.get('password2', None)
-        # bio = request.POST.get('bio', None)
+
 
         if password != password2:    # 비밀번호 불일치시 회원가입 화면 다시 보여주기
             return render(request, 'user/signup.html')
@@ -27,12 +27,12 @@ def sign_up_view(request):      # 회원가입 부분 / 태연
             if exist_user :
                 return render(request, 'user/signup.html')
             else:
-                UserModel.objects.create_user(username=username, password=password)    #bio=bio 일단 빼놓기
-                return redirect('/sign-in')
+                UserModel.objects.create_user(username=username, password=password)    
+                return redirect('/log_in')
 
 
 
-def sign_in_view(request):          # 로그인 부분 / 태연
+def log_in_view(request):          # 로그인 부분 / 태연
     if request.method == 'POST':
         username = request.POST.get('username', None)
         password = request.POST.get('password', None)
@@ -43,14 +43,14 @@ def sign_in_view(request):          # 로그인 부분 / 태연
             auth.login(request, me)
             return redirect('/')
         else:
-            return redirect('/sign-in/')
+            return redirect('/log_in/')
     
     elif request.method == 'GET':
         user = request.user.is_authenticated
         if user:
             return redirect('/')
         else:
-            return render(request, 'user/signin.html')
+            return render(request, 'user/login.html')
 
 
 
