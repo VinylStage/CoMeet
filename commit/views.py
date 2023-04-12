@@ -39,7 +39,7 @@ def write_view(request):
         """
         화면 띄워주기
         """
-        return render(request, 'commit/write-view.html')
+        return render(request, 'commit/write_view.html')
     
         
     if request.method == 'POST':
@@ -52,7 +52,7 @@ def write_view(request):
         my_commit.header = request.POST.get('my-header','')
         my_commit.content = request.POST.get('my-content','')
         my_commit.save()
-        return redirect('/commit/home')
+        return redirect('/')
         
 
 
