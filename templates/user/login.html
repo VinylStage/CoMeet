@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Co.Meet ⎜ Login</title>
     <link rel="stylesheet" href="/static/css.css">
-    <link rel="stylesheet" href="/static/taeyeon1.css">
+    <link rel="stylesheet" href="/static/login.css">
 
   </head>
   {% comment %} 로고묶은 h2태그였던 줄을 a태그로 바꾸어서 작동하게 하느라 class도 부여했습니다 css도 확인해서 수정해주세요(회원가입페이지 동일) {% endcomment %}
@@ -16,7 +16,7 @@
       <div class="form-box">
         <div class="form-value">
           <form action="">  
-            <a href="{% url 'commit:home' %}" class='login_logo'>
+            <a href="{% url 'commit:home' %}" class='login_logo' style="text-decoration: none;">
               <span class="co">Co.</span>
               <span class="meet">Meet</span></a>
             <div class="inputbox">
@@ -36,7 +36,7 @@
             <button class="sign">Sign up
               <div class="register">
                 <p>Don't have a account
-                  <a href="{% url 'user:sign_up' %}">Register</a>
+                  <a href="{% url 'user:log_in' %}">Register</a>
                 </p>
               </div>
             </form>
